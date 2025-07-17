@@ -1,3 +1,5 @@
+using DesafioFundamentos.Services;
+
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -5,6 +7,8 @@ namespace DesafioFundamentos.Models
         private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
         private List<string> veiculos = new List<string>();
+
+        PlacaService placaService = new PlacaService();
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
         {
@@ -15,8 +19,18 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             // TODO: Pedir para o usuário digitar uma placa (ReadLine) e adicionar na lista "veiculos"
-            // *IMPLEMENTE AQUI*
             Console.WriteLine("Digite a placa do veículo para estacionar:");
+            string placa = Console.ReadLine().ToUpper();
+
+            if (placaService.PlacaJaExiste(veiculos, placa))
+            {
+                Console.WriteLine($"Não é possível cadastrar a placa {placa}, pois já está no sistema!");
+            }
+            else
+            {
+                veiculos.Add(placa);
+                Console.WriteLine($"Placa {placa} cadastrada com sucesso!");
+            }
         }
 
         public void RemoverVeiculo()
