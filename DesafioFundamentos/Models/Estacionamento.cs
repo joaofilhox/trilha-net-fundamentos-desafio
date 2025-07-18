@@ -9,6 +9,7 @@ namespace DesafioFundamentos.Models
         private List<string> veiculos = new List<string>();
 
         PlacaService placaService = new PlacaService();
+        VeiculosService veiculosService = new VeiculosService();
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
         {
@@ -70,7 +71,7 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Os veículos estacionados são:");
                 // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
-                // *IMPLEMENTE AQUI*
+                veiculosService.ListarVeiculos(veiculos);
             }
             else
             {
